@@ -1,13 +1,15 @@
 function ExpenseDate(props) {
-    const day = props.date.getDate();
-    const month = props.date.getMonth();
-    const year = props.date.getYear();
-    
+  const day = props.date.toLocaleString('en-US', {day: '2-digit'});
+  const month = props.date.toLocaleString('en-US', {month: 'long'});
+  const year = props.date.getFullYear();
+
     return (
-      <div>
-        <div>{day}</div>
-        <div>{month}</div>
-        <div>{year}</div>
+      <div className="card text-white bg-dark text-center col-md-2 col-xs-12">
+        <div className="card-body">
+          <h5>{day}</h5>
+          <h5>{month}</h5>
+          <h5>{year}</h5>
+        </div>
       </div>
     );
 }

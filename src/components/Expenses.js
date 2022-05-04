@@ -7,6 +7,7 @@ function Expenses(props) {
         title={props.expenseItems[0].title}
         amount={props.expenseItems[0].amount}
         date={props.expenseItems[0].date}
+        paymentMethod={props.expenseItems[0].paymentMethod}
       />
     </div>
   );
