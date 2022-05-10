@@ -10,7 +10,7 @@ function ExpenseItem(props) {
       <div className="card m-4">
         <div className="card-body row" style={{padding: 0}}>
           <ExpenseDate date={date} />
-          <div className="card-title col-md-10 col-xs-12">
+          <div className="card-title col-md-8 col-xs-12">
             <h2>{title}</h2>
             <h3>{amount} MAD</h3>
             <h4>{paymentMethod}</h4>

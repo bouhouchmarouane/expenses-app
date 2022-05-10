@@ -17,8 +17,13 @@ function App() {
   ];
 
   return (
-    <div>
-      <Expenses expenseItems={expenseItems}/>
+    <div className="row">
+        <style>{"body { background-color: #202124; }"}</style>
+      <div className="col-md-3 col-sm-0"></div>
+      <div className="col-md-6 col-sm-12">
+        <Expenses expenseItems={expenseItems} />
+      </div>
+      <div className="col-md-3 col-sm-0"></div>
     </div>
   );
 }

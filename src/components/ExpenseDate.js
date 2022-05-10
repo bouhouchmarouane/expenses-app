@@ -4,7 +4,7 @@ function ExpenseDate(props) {
   const year = props.date.getFullYear();
 
     return (
-      <div className="card text-white bg-dark text-center col-md-2 col-xs-12">
+      <div className="card text-white bg-dark text-center col-md-4 col-xs-12">
         <div className="card-body">
           <h5>{day}</h5>
           <h5>{month}</h5>
