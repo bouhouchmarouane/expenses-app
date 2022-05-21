@@ -1,6 +1,7 @@
 import Expenses from "./components/Expenses";
+import ExpenseForm from "./components/NewExpense/ExpenseForm";
 
-function App() {
+const App = () => {
   const expenseItems = [
     {
       title: "Car  insurance",
@@ -19,11 +20,14 @@ function App() {
   return (
     <div className="row">
         <style>{"body { background-color: #202124; }"}</style>
-      <div className="col-md-3 col-sm-0"></div>
-      <div className="col-md-6 col-sm-12">
+        <h1 style={{color: 'white'}}>Expenses</h1>
+
+      <div className="col-lg-3 col-md-2 col-sm-0"></div>
+      <div className="col-lg-6 col-md-8 col-sm12">
+        <ExpenseForm/>
         <Expenses expenseItems={expenseItems} />
       </div>
-      <div className="col-md-3 col-sm-0"></div>
+      <div className="col-lg-3 col-md-2 col-sm-0"></div>
     </div>
   );
 }
