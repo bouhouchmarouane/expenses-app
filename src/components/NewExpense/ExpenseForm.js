@@ -1,6 +1,12 @@
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./ExpenseForm.css";
 
 export const ExpenseForm = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="new-expense-form m-4">
       <form>
@@ -15,6 +21,12 @@ export const ExpenseForm = () => {
             Amount
           </label>
           <input type="number" class="form-control" id="amout" />
+        </div>
+        <div class="mb-3">
+          <label for="amout" class="form-label">
+            Date
+          </label>
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="form-control" />
         </div>
         <div class="mb-3">
           <div class="form-check form-check-inline">
@@ -35,7 +47,7 @@ export const ExpenseForm = () => {
               name="payment-method"
               id="cash"
             />
-            <label class="form-check-label" for="cash" checked >
+            <label class="form-check-label" for="cash" checked>
               Cash
             </label>
           </div>
