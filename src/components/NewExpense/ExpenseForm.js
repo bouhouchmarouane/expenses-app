@@ -5,54 +5,95 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./ExpenseForm.css";
 
 export const ExpenseForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
+  const [enteredPaymentMethod, setEnteredPaymentMethod] = useState('cash');
+
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value);
+  };
+
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+  };
+
+  const paymentMethodChangeHandler = (event) => {
+    setEnteredPaymentMethod(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const newExpense = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: enteredDate,
+      paymentMethod: enteredPaymentMethod
+    }
+
+    console.log(newExpense);
+
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
+    setEnteredPaymentMethod('cash');
+  };
 
   return (
     <div className="new-expense-form m-4">
-      <form>
-        <div class="mb-3">
-          <label for="title" class="form-label">
+      <form onSubmit={submitHandler}>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
             Title
           </label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" className="form-control" id="title" value={enteredTitle} onChange={titleChangeHandler}/>
         </div>
-        <div class="mb-3">
-          <label for="amout" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="amout" className="form-label">
             Amount
           </label>
-          <input type="number" class="form-control" id="amout" />
+          <input type="number" className="form-control" id="amout"  value={enteredAmount} onChange={amountChangeHandler}/>
         </div>
-        <div class="mb-3">
-          <label for="amout" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="amout" className="form-label">
             Date
           </label>
-          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="form-control" />
+          <DatePicker
+            selected={enteredDate}
+            onChange={setEnteredDate}
+            className="form-control"
+          />
         </div>
-        <div class="mb-3">
-          <div class="form-check form-check-inline">
+        <div className="mb-3">
+          <div className="form-check form-check-inline">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="payment-method"
               id="credit-card"
+              value="credit-card"
+              onChange={paymentMethodChangeHandler}
             />
-            <label class="form-check-label" for="credit-card">
+            <label className="form-check-label" htmlFor="credit-card">
               Credit card
             </label>
           </div>
-          <div class="form-check form-check-inline">
+          <div className="form-check form-check-inline">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="payment-method"
               id="cash"
+              value="cash"
+              onChange={paymentMethodChangeHandler}
             />
-            <label class="form-check-label" for="cash" checked>
+            <label className="form-check-label" htmlFor="cash">
               Cash
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Save
         </button>
       </form>
