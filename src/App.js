@@ -1,5 +1,7 @@
 import Expenses from "./components/Expenses";
 import ExpenseForm from "./components/NewExpense/ExpenseForm";
+import FilterExpense from "./components/FilterExpense";
+import { useState } from "react";
 
 const App = () => {
   const expenseItems = [
@@ -17,6 +19,21 @@ const App = () => {
     },
   ];
 
+  const [filteredYear, setFilteredYear] = useState('2021');
+
+  const saveExpenseDataHandler = (enteredExpenseData) => {
+    const newExpenseData = {
+      ...enteredExpenseData,
+      id: Math.random().toString(),
+    };
+    console.log(newExpenseData);
+  };
+
+  const filteredYearchangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+    console.log(selectedYear);
+  }
+
   return (
     <div className="row">
         <style>{"body { background-color: #202124; }"}</style>
@@ -24,7 +41,8 @@ const App = () => {
 
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
-        <ExpenseForm/>
+        <ExpenseForm onSaveEnteredData={saveExpenseDataHandler}/>
+        <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
         <Expenses expenseItems={expenseItems} />
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>

@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ExpenseForm.css";
 
-export const ExpenseForm = () => {
+export const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -32,7 +32,7 @@ export const ExpenseForm = () => {
       paymentMethod: enteredPaymentMethod
     }
 
-    console.log(newExpense);
+    props.onSaveEnteredData(newExpense);
 
     setEnteredTitle('');
     setEnteredAmount('');
