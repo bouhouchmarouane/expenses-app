@@ -14,7 +14,7 @@ const ExpenseItem = (props) => {
 
     return (
       <div className="card m-4">
-        <div className="card-body row" style={{padding: 0}}>
+        <div className="card-body row m-0" style={{padding: 0}}>
           <ExpenseDate date={date} />
           <div className="card-title col-xl-6 col-lg-7">
             <h2>{title}</h2>

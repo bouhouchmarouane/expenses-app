@@ -41,7 +41,7 @@ export const ExpenseForm = (props) => {
   };
 
   return (
-    <div className="new-expense-form m-4">
+    <div className="new-expense-form mb-4">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">

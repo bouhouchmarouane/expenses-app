@@ -1,7 +1,8 @@
 import Expenses from "./components/Expenses";
-import ExpenseForm from "./components/NewExpense/ExpenseForm";
+import ExpenseForm from "./components/ExpenseForm";
 import FilterExpense from "./components/FilterExpense";
 import { useState } from "react";
+import Card from "./components/Card";
 
 const App = () => {
   const expenseItems = [
@@ -42,8 +43,10 @@ const App = () => {
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
         <ExpenseForm onSaveEnteredData={saveExpenseDataHandler}/>
-        <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
-        <Expenses expenseItems={expenseItems} />
+        <Card>
+          <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
+          <Expenses expenseItems={expenseItems} />
+        </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
     </div>
