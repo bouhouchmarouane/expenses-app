@@ -3,7 +3,8 @@ import ExpenseItem from "./ExpenseItem";
 const Expenses = (props) => {
   return (
     <div>
-      {props.expenseItems.map(expenseItem => (
+      {props.expenseItems.filter(expenseItem => expenseItem.date.getFullYear() == props.filterYearSelected || props.filterYearSelected == '')
+      .map(expenseItem => (
         <ExpenseItem
         key={expenseItem.id}
         title={expenseItem.title}

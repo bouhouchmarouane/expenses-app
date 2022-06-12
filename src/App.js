@@ -23,7 +23,8 @@ const INITIAL_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-  const [filteredYear, setFilteredYear] = useState('2021');
+  const [filteredYear, setFilteredYear] = useState('');
+  var filteredExpenses = [...expenses];
 
   const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
@@ -31,11 +32,11 @@ const App = () => {
       ...enteredExpenseData
     };
     setExpenses([newExpenseData, ...expenses]);
-    console.log([newExpenseData, ...expenses]);
   };
 
   const filteredYearchangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
+    setExpenses(expenses);
   }
 
   return (
@@ -48,7 +49,7 @@ const App = () => {
         <ExpenseForm onSaveEnteredData={addExpenseDataHandler}/>
         <Card>
           <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
-          <Expenses expenseItems={expenses} />
+          <Expenses expenseItems={filteredExpenses} filterYearSelected={filteredYear}/>
         </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
