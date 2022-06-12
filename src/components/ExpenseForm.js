@@ -34,10 +34,10 @@ export const ExpenseForm = (props) => {
 
     props.onSaveEnteredData(newExpense);
 
-    setEnteredTitle('');
+    /* setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
-    setEnteredPaymentMethod('cash');
+    setEnteredPaymentMethod('cash'); */
   };
 
   return (

@@ -5,10 +5,11 @@ const Expenses = (props) => {
     <div>
       {props.expenseItems.map(expenseItem => (
         <ExpenseItem
+        key={expenseItem.id}
         title={expenseItem.title}
         amount={expenseItem.amount}
         date={expenseItem.date}
-        paymentMethod={props.expenseItems[0].paymentMethod}
+        paymentMethod={expenseItem.paymentMethod}
       />
       ))}
     </div>

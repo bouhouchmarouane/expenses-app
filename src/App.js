@@ -4,35 +4,38 @@ import FilterExpense from "./components/FilterExpense";
 import { useState } from "react";
 import Card from "./components/Card";
 
-const App = () => {
-  const expenseItems = [
-    {
-      title: "Car  insurance",
-      amount: 4200,
-      date: new Date(),
-      paymentMethod: "Credit card",
-    },
-    {
-      title: "Gas",
-      amount: 300,
-      date: new Date(),
-      paymentMethod: "check",
-    },
-  ];
+const INITIAL_EXPENSES = [
+  {
+    id: 1,
+    title: "Car  insurance",
+    amount: 4200,
+    date: new Date(),
+    paymentMethod: "Credit card",
+  },
+  {
+    id: 2,
+    title: "Gas",
+    amount: 300,
+    date: new Date(),
+    paymentMethod: "check",
+  },
+];
 
+const App = () => {
+  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
   const [filteredYear, setFilteredYear] = useState('2021');
 
-  const saveExpenseDataHandler = (enteredExpenseData) => {
+  const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
-      ...enteredExpenseData,
       id: Math.random().toString(),
+      ...enteredExpenseData
     };
-    console.log(newExpenseData);
+    setExpenses([newExpenseData, ...expenses]);
+    console.log([newExpenseData, ...expenses]);
   };
 
   const filteredYearchangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-    console.log(selectedYear);
   }
 
   return (
@@ -42,10 +45,10 @@ const App = () => {
 
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
-        <ExpenseForm onSaveEnteredData={saveExpenseDataHandler}/>
+        <ExpenseForm onSaveEnteredData={addExpenseDataHandler}/>
         <Card>
           <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
-          <Expenses expenseItems={expenseItems} />
+          <Expenses expenseItems={expenses} />
         </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
