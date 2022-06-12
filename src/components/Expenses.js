@@ -3,12 +3,14 @@ import ExpenseItem from "./ExpenseItem";
 const Expenses = (props) => {
   return (
     <div>
-      <ExpenseItem
-        title={props.expenseItems[0].title}
-        amount={props.expenseItems[0].amount}
-        date={props.expenseItems[0].date}
+      {props.expenseItems.map(expenseItem => (
+        <ExpenseItem
+        title={expenseItem.title}
+        amount={expenseItem.amount}
+        date={expenseItem.date}
         paymentMethod={props.expenseItems[0].paymentMethod}
       />
+      ))}
     </div>
   );
 }
