@@ -1,4 +1,3 @@
-import Card from "./Card";
 import ExpenseCard from "./ExpenseCard";
 import ExpenseDate from "./ExpenseDate";
 

@@ -3,7 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 const Expenses = (props) => {
   const filteredExpenses = props.expenseItems.filter(
     (expenseItem) =>
-      expenseItem.date.getFullYear() == props.filterYearSelected ||
+      expenseItem.date.getFullYear().toString() === props.filterYearSelected ||
       props.filterYearSelected === ""
   );
 

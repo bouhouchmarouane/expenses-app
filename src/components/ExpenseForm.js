@@ -32,6 +32,7 @@ export const ExpenseForm = (props) => {
     }
 
     props.onSaveEnteredData(newExpense);
+    props.onHideExpenseForm();
   };
 
   return (
@@ -87,8 +88,11 @@ export const ExpenseForm = (props) => {
             </label>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary ms-3 float-end">
           Save
+        </button>
+        <button className="btn btn-secondary float-end" onClick={props.onHideExpenseForm}>
+          Cancel
         </button>
       </form>
     </div>

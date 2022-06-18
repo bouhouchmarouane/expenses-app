@@ -1,8 +1,8 @@
 import Expenses from "./components/Expenses";
-import ExpenseForm from "./components/ExpenseForm";
 import { ExpenseFilter } from "./components/ExpenseFilter";
 import { useState } from "react";
 import Card from "./components/Card";
+import NewExpense from "./components/NewExpense";
 
 const INITIAL_EXPENSES = [
   {
@@ -48,7 +48,7 @@ const App = () => {
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
         <Card>
-          <ExpenseForm onSaveEnteredData={addExpenseDataHandler} />
+          <NewExpense onSaveEnteredData={addExpenseDataHandler} />
         </Card>
         <Card>
             <ExpenseFilter
