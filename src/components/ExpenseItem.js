@@ -1,3 +1,5 @@
+import Card from "./Card";
+import ExpenseCard from "./ExpenseCard";
 import ExpenseDate from "./ExpenseDate";
 
 const ExpenseItem = (props) => {
@@ -7,8 +9,8 @@ const ExpenseItem = (props) => {
     const paymentMethod = props.paymentMethod;
 
     return (
-      <div className="card m-4">
-        <div className="card-body row m-0" style={{padding: 0}}>
+      <ExpenseCard>
+        <div className="card-body row m-0 p-0" style={{padding: 0}}>
           <ExpenseDate date={date} />
           <div className="card-title col-xl-6 col-lg-7">
             <h2>{title}</h2>
@@ -19,7 +21,7 @@ const ExpenseItem = (props) => {
             <button className="btn btn-primary">Change Title</button>
           </div>
         </div>
-      </div>
+      </ExpenseCard>
     );
 }
 

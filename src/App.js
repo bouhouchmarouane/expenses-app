@@ -1,6 +1,6 @@
 import Expenses from "./components/Expenses";
 import ExpenseForm from "./components/ExpenseForm";
-import FilterExpense from "./components/FilterExpense";
+import { ExpenseFilter } from "./components/ExpenseFilter";
 import { useState } from "react";
 import Card from "./components/Card";
 
@@ -23,13 +23,13 @@ const INITIAL_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-  const [filteredYear, setFilteredYear] = useState('');
+  const [filteredYear, setFilteredYear] = useState("");
   var filteredExpenses = [...expenses];
 
   const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
       id: Math.random().toString(),
-      ...enteredExpenseData
+      ...enteredExpenseData,
     };
     setExpenses([newExpenseData, ...expenses]);
   };
@@ -37,24 +37,33 @@ const App = () => {
   const filteredYearchangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
     setExpenses(expenses);
-  }
+  };
 
   return (
     <div className="row">
-        <style>{"body { background-color: #202124; }"}</style>
-        <h1 style={{color: 'white'}}>Expenses</h1>
+      <style>{"body { background-color: #202124; }"}</style>
+
+      <h1 style={{ color: "white" }}>Expenses</h1>
 
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
-        <ExpenseForm onSaveEnteredData={addExpenseDataHandler}/>
         <Card>
-          <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
-          <Expenses expenseItems={filteredExpenses} filterYearSelected={filteredYear}/>
+          <ExpenseForm onSaveEnteredData={addExpenseDataHandler} />
+        </Card>
+        <Card>
+            <ExpenseFilter
+              onFilteredYearChanged={filteredYearchangeHandler}
+              selected={filteredYear}
+            />
+          <Expenses
+            expenseItems={filteredExpenses}
+            filterYearSelected={filteredYear}
+          />
         </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
     </div>
   );
-}
+};
 
 export default App;
