@@ -3,11 +3,12 @@ import { ExpenseFilter } from "./components/ExpenseFilter";
 import { useState } from "react";
 import Card from "./components/Card";
 import NewExpense from "./components/NewExpense";
+import Chart from "./components/Chart";
 
 const INITIAL_EXPENSES = [
   {
     id: 1,
-    title: "Car  insurance",
+    title: "Car insurance",
     amount: 4200,
     date: new Date(),
     paymentMethod: "Credit card",
@@ -19,12 +20,25 @@ const INITIAL_EXPENSES = [
     date: new Date(),
     paymentMethod: "check",
   },
+  {
+    id: 3,
+    title: "Test1",
+    amount: 10,
+    date: new Date(2021,11,5),
+    paymentMethod: "check",
+  },
+  {
+    id: 4,
+    title: "Test2",
+    amount: 4000,
+    date: new Date(2022, 11, 5),
+    paymentMethod: "check",
+  }
 ];
 
 const App = () => {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-  const [filteredYear, setFilteredYear] = useState("");
-  var filteredExpenses = [...expenses];
+  const [filteredYear, setFilteredYear] = useState("2021");
 
   const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
@@ -51,14 +65,14 @@ const App = () => {
           <NewExpense onSaveEnteredData={addExpenseDataHandler} />
         </Card>
         <Card>
-            <ExpenseFilter
-              onFilteredYearChanged={filteredYearchangeHandler}
-              selected={filteredYear}
-            />
-          <Expenses
-            expenseItems={filteredExpenses}
-            filterYearSelected={filteredYear}
+          <Chart year={filteredYear} data={expenses}/>
+        </Card>
+        <Card>
+          <ExpenseFilter
+            onFilteredYearChanged={filteredYearchangeHandler}
+            selected={filteredYear}
           />
+          <Expenses expenseItems={expenses} filterYearSelected={filteredYear} />
         </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>

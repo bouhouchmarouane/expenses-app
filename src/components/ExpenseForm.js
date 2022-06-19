@@ -91,7 +91,7 @@ export const ExpenseForm = (props) => {
         <button type="submit" className="btn btn-primary ms-3 float-end">
           Save
         </button>
-        <button className="btn btn-secondary float-end" onClick={props.onHideExpenseForm}>
+        <button type="button" className="btn btn-secondary float-end" onClick={props.onHideExpenseForm}>
           Cancel
         </button>
       </form>
