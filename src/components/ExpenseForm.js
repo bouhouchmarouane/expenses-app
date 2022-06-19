@@ -2,7 +2,6 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./ExpenseForm.css";
 
 export const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
@@ -33,15 +32,11 @@ export const ExpenseForm = (props) => {
     }
 
     props.onSaveEnteredData(newExpense);
-
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
-    setEnteredPaymentMethod('cash');
+    props.onHideExpenseForm();
   };
 
   return (
-    <div className="new-expense-form mb-4">
+    <div className="new-expense-form">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -93,8 +88,11 @@ export const ExpenseForm = (props) => {
             </label>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary ms-3 float-end">
           Save
+        </button>
+        <button type="button" className="btn btn-secondary float-end" onClick={props.onHideExpenseForm}>
+          Cancel
         </button>
       </form>
     </div>

@@ -1,20 +1,15 @@
-import { useState } from "react";
+import ExpenseCard from "./ExpenseCard";
 import ExpenseDate from "./ExpenseDate";
 
 const ExpenseItem = (props) => {
+    const title = props.title;
     const amount = props.amount;
     const date = props.date;
     const paymentMethod = props.paymentMethod;
-    
-    const [title, setTitle] = useState(props.title);
-
-    const changeTitle = () => {
-      setTitle(prompt('Please enter the new title'));
-    }
 
     return (
-      <div className="card m-4">
-        <div className="card-body row m-0" style={{padding: 0}}>
+      <ExpenseCard>
+        <div className="card-body row m-0 p-0" style={{padding: 0}}>
           <ExpenseDate date={date} />
           <div className="card-title col-xl-6 col-lg-7">
             <h2>{title}</h2>
@@ -22,10 +17,10 @@ const ExpenseItem = (props) => {
             <h4>{paymentMethod}</h4>
           </div>
           <div className="card-body col-xl-3 col-lg-12">
-            <button className="btn btn-primary" onClick={changeTitle}>Change Title</button>
+            <button className="btn btn-primary">Change Title</button>
           </div>
         </div>
-      </div>
+      </ExpenseCard>
     );
 }
 

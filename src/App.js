@@ -1,56 +1,83 @@
 import Expenses from "./components/Expenses";
-import ExpenseForm from "./components/ExpenseForm";
-import FilterExpense from "./components/FilterExpense";
+import { ExpenseFilter } from "./components/ExpenseFilter";
 import { useState } from "react";
 import Card from "./components/Card";
+import NewExpense from "./components/NewExpense";
+import Chart from "./components/Chart";
+
+const INITIAL_EXPENSES = [
+  {
+    id: 1,
+    title: "Car insurance",
+    amount: 4200,
+    date: new Date(),
+    paymentMethod: "Credit card",
+  },
+  {
+    id: 2,
+    title: "Gas",
+    amount: 300,
+    date: new Date(),
+    paymentMethod: "check",
+  },
+  {
+    id: 3,
+    title: "Test1",
+    amount: 10,
+    date: new Date(2021,11,5),
+    paymentMethod: "check",
+  },
+  {
+    id: 4,
+    title: "Test2",
+    amount: 4000,
+    date: new Date(2022, 11, 5),
+    paymentMethod: "check",
+  }
+];
 
 const App = () => {
-  const expenseItems = [
-    {
-      title: "Car  insurance",
-      amount: 4200,
-      date: new Date(),
-      paymentMethod: "Credit card",
-    },
-    {
-      title: "Gas",
-      amount: 300,
-      date: new Date(),
-      paymentMethod: "check",
-    },
-  ];
+  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [filteredYear, setFilteredYear] = useState("2021");
 
-  const [filteredYear, setFilteredYear] = useState('2021');
-
-  const saveExpenseDataHandler = (enteredExpenseData) => {
+  const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
-      ...enteredExpenseData,
       id: Math.random().toString(),
+      ...enteredExpenseData,
     };
-    console.log(newExpenseData);
+    setExpenses([newExpenseData, ...expenses]);
   };
 
   const filteredYearchangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-    console.log(selectedYear);
-  }
+    setExpenses(expenses);
+  };
 
   return (
     <div className="row">
-        <style>{"body { background-color: #202124; }"}</style>
-        <h1 style={{color: 'white'}}>Expenses</h1>
+      <style>{"body { background-color: #202124; }"}</style>
+
+      <h1 style={{ color: "white" }}>Expenses</h1>
 
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
       <div className="col-lg-6 col-md-8 col-sm12">
-        <ExpenseForm onSaveEnteredData={saveExpenseDataHandler}/>
         <Card>
-          <FilterExpense onFilteredYearChanged={filteredYearchangeHandler} selected={filteredYear}/>
-          <Expenses expenseItems={expenseItems} />
+          <NewExpense onSaveEnteredData={addExpenseDataHandler} />
+        </Card>
+        <Card>
+          <Chart year={filteredYear} data={expenses}/>
+        </Card>
+        <Card>
+          <ExpenseFilter
+            onFilteredYearChanged={filteredYearchangeHandler}
+            selected={filteredYear}
+          />
+          <Expenses expenseItems={expenses} filterYearSelected={filteredYear} />
         </Card>
       </div>
       <div className="col-lg-3 col-md-2 col-sm-0"></div>
     </div>
   );
-}
+};
 
 export default App;
