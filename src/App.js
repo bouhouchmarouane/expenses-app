@@ -24,7 +24,7 @@ const INITIAL_EXPENSES = [
     id: 3,
     title: "Test1",
     amount: 10,
-    date: new Date(2021,11,5),
+    date: new Date(2021, 11, 5),
     paymentMethod: "check",
   },
   {
@@ -33,12 +33,19 @@ const INITIAL_EXPENSES = [
     amount: 4000,
     date: new Date(2022, 11, 5),
     paymentMethod: "check",
-  }
+  },
 ];
 
 const App = () => {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
-  const [filteredYear, setFilteredYear] = useState("2021");
+  const [filteredYear, setFilteredYear] = useState("");
+  const [yearsToFilter, setYearsToFilter] = useState(
+    [
+      ...new Set(
+        INITIAL_EXPENSES.map((ex) => ex.date.getFullYear().toString())
+      ),
+    ].sort()
+  );
 
   const addExpenseDataHandler = (enteredExpenseData) => {
     const newExpenseData = {
@@ -46,6 +53,13 @@ const App = () => {
       ...enteredExpenseData,
     };
     setExpenses([newExpenseData, ...expenses]);
+    setYearsToFilter([
+      ...new Set(
+        [newExpenseData, ...expenses].map((ex) => ex.date.getFullYear().toString())
+      ),
+    ].sort());
+    console.log(expenses);
+    console.log(yearsToFilter);
   };
 
   const filteredYearchangeHandler = (selectedYear) => {
@@ -65,12 +79,13 @@ const App = () => {
           <NewExpense onSaveEnteredData={addExpenseDataHandler} />
         </Card>
         <Card>
-          <Chart year={filteredYear} data={expenses}/>
+          <Chart year={filteredYear} data={expenses} />
         </Card>
         <Card>
           <ExpenseFilter
             onFilteredYearChanged={filteredYearchangeHandler}
             selected={filteredYear}
+            years={yearsToFilter}
           />
           <Expenses expenseItems={expenses} filterYearSelected={filteredYear} />
         </Card>
